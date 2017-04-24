@@ -5,6 +5,9 @@
 !*.*
 !Makefile
 
+# Ignore obj files
+*.o
+
 # Unignore all dirs
 !*/
 !*/Makefile

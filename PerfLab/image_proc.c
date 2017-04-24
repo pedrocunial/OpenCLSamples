@@ -34,7 +34,7 @@ void better_rotate_image(image_t *src, image_t *dest) {
   cl_int err;
   cl_platform_id platform = NULL;
   cl_device_id device = NULL;
-  cl_uint platforms = NULL, devices = NULL;
+  cl_uint platforms = 0, devices = 0;
   nrows = src->nrows;
   global[0] = nrows;
   global[1] = nrows;
@@ -119,7 +119,9 @@ void better_rotate_image(image_t *src, image_t *dest) {
     puts("ERROR: write buffer");
     exit(1);
   }
-  err = clEnqueueNDRangeKernel(cq, k_rot, 2, NULL, &global,
+
+  // NOTE: Maybe I need to use &global
+  err = clEnqueueNDRangeKernel(cq, k_rot, 2, NULL, global,
                                NULL, 0, NULL, NULL);
   if (err) {
     puts("ERROR: range kernel");
