@@ -1,5 +1,8 @@
-#include "image.h"
+#define PIX_TYPE unsigned char
 
+typedef struct {
+  PIX_TYPE c[3];
+} pixel_t;
 
 __kernel void rotate_image(__global pixel_t *srcdata,
                            __global pixel_t *destdata)
